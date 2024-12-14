@@ -26,7 +26,7 @@ function Tag({data = [], changeComponent}: any) {
 
         <p>Total: {length}</p>
 
-        <p title="imprimir" className={styles.headerAction}>
+        <a onClick={() => window.print()} title="imprimir" className={styles.headerAction}>
           <svg
             stroke="currentColor"
             fill="none"
@@ -42,7 +42,7 @@ function Tag({data = [], changeComponent}: any) {
             <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
             <rect x="6" y="14" width="12" height="8"></rect>
           </svg>
-        </p>
+        </a>
       </header>
 
       <article className={styles.tagContainer}>
