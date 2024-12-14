@@ -1,9 +1,27 @@
 "use client"
+import { useState } from "react";
 import styles from './page.module.scss';
-import {greatVibes, roboto} from '../styles/fonts';
+import { greatVibes, roboto } from '../styles/fonts';
 
 function Tag({data = [], changeComponent}: any) {
-  const length = data?.length || 0;
+  const itemsPerPage = 500; // Defina quantos itens deseja por página
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Total de páginas
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  // Dados da página atual
+  const currentData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // Função para mudar de página
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
   return (
     <main className={styles.pageHeader}>
@@ -25,7 +43,7 @@ function Tag({data = [], changeComponent}: any) {
           </svg>
         </a>
 
-        <p>Total: {length}</p>
+        Total: {data.length} | Página: {currentPage} de {totalPages}
 
         <a onClick={() => window.print()} title="imprimir" className={styles.headerAction}>
           <svg
@@ -46,12 +64,33 @@ function Tag({data = [], changeComponent}: any) {
         </a>
       </header>
 
+      {/* Paginação */}
+      <header className={styles.header}>
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Anterior
+        </button>
+
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Próxima
+        </button>
+      </header>
+
       <article className={styles.tagContainer}>
-        {data.map((item: string, index: number) => (
+        {currentData.map((item: string, index: number) => (
           <div className={styles.tagCard} key={index}>
             <div>
-              <p className={[styles.tagText, roboto.className].join(' ')}>{item.slice(5)}</p>
-              <p className={[styles.tagBarcode, greatVibes.className].join(' ')}>*{item}*</p>
+              <p className={[styles.tagText, roboto.className].join(" ")}>
+                {item.slice(5)}
+              </p>
+              <p className={[styles.tagBarcode, greatVibes.className].join(" ")}>
+                *{item}*
+              </p>
             </div>
           </div>
         ))}

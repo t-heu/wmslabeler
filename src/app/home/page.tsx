@@ -60,7 +60,6 @@ const Home = ({data, changeComponent}: any) => {
 
     try {
       changeComponent('Tag');
-      
     } catch (error) {
       console.error('Error:', error);
     }
