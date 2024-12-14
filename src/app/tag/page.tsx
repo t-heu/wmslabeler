@@ -1,15 +1,8 @@
 "use client"
 import styles from './page.module.scss';
 
-export default function Tag({data, changeComponent}: any) {
-  /*const dataTest = [
-    "1I T 01 IE 01 I",
-    "9W T 01 FE 01 B",
-    "1W W 99 WE 99 W",
-    "1W W 99 WE 99 W",
-    "1W W 99 WE 99 B",
-  ];*/
-  const length = data.length;
+function Tag({data = [], changeComponent}: any) {
+  const length = data?.length || 0;
 
   return (
     <main className={styles.pageHeader}>
@@ -65,3 +58,5 @@ export default function Tag({data, changeComponent}: any) {
     </main>
   );
 }
+
+export default Tag;
