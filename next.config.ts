@@ -1,4 +1,4 @@
-import withPWA from 'next-pwa';
+/*import withPWA from 'next-pwa';
 const isProduction = process.env.NODE_ENV === 'production';
 
 const nextPWAConfig = {
@@ -10,21 +10,19 @@ const nextPWAConfig = {
 const nextConfigFromPWA = {
   reactStrictMode: false,
   swcMinify: false,
-  output: "export",
-  basePath: process.env.B_DEV ? "/out" : '/WMSLabeler',
-  compiler: {
-    styledComponents: true,
-  }
-};
+  output: "export" as const,
+  basePath: process.env.B_DEV ? "/out" : '/wmslabeler'
+};*/
 
 const nextConfig = {
-  output: "export",
+  output: "export" as const,
   basePath: '',
   compiler: {
     styledComponents: true,
   }
 };
 
-const withCustomPWA = withPWA(nextPWAConfig);
+//const withCustomPWA = withPWA(nextPWAConfig);
 
-export default isProduction ? withCustomPWA(nextConfigFromPWA) : nextConfig;
+// export default isProduction ? withCustomPWA(nextConfigFromPWA) : nextConfig;
+export default nextConfig;
