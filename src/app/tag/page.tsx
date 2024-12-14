@@ -1,5 +1,6 @@
 "use client"
 import styles from './page.module.scss';
+import {greatVibes, roboto} from '../styles/fonts';
 
 function Tag({data = [], changeComponent}: any) {
   const length = data?.length || 0;
@@ -49,8 +50,8 @@ function Tag({data = [], changeComponent}: any) {
         {data.map((item: string, index: number) => (
           <div className={styles.tagCard} key={index}>
             <div>
-              <p className={styles.tagText}>{item.slice(5)}</p>
-              <p className={styles.tagBarcode}>*{item}*</p>
+              <p className={[styles.tagText, roboto.className].join(' ')}>{item.slice(5)}</p>
+              <p className={[styles.tagBarcode, greatVibes.className].join(' ')}>*{item}*</p>
             </div>
           </div>
         ))}
