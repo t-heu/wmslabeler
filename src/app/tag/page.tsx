@@ -1,22 +1,20 @@
 "use client"
 import styles from './page.module.scss';
-import { useRouter } from 'next/navigation';
 
-export default function Tag() {
-  const router = useRouter();
-  const data = router.query.data ? JSON.parse(router.query.data as string) : []; // Desserializa o array
-  /*const data = [
+export default function Tag({data, changeComponent}: any) {
+  /*const dataTest = [
     "1I T 01 IE 01 I",
     "9W T 01 FE 01 B",
     "1W W 99 WE 99 W",
-    // Adicione mais itens aqui
+    "1W W 99 WE 99 W",
+    "1W W 99 WE 99 B",
   ];*/
   const length = data.length;
 
   return (
     <main className={styles.pageHeader}>
       <header className={styles.header}>
-        <p title="voltar" className={styles.headerAction}>
+        <a onClick={() => changeComponent('Home')} title="voltar" className={styles.headerAction}>
           <svg
             stroke="currentColor"
             fill="none"
@@ -31,7 +29,7 @@ export default function Tag() {
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
-        </p>
+        </a>
 
         <p>Total: {length}</p>
 
