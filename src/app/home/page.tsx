@@ -93,7 +93,7 @@ const Home = ({data, changeComponent}: any) => {
           <a
             title="baixar modelo"
             className={styles.link}
-            href="/download.xlsx"
+            href="/wmslabeler/download.xlsx"
             download="download"
           > clicando aqui</a>
         </p>
