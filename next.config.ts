@@ -14,12 +14,11 @@ const nextConfigFromPWA = {
   basePath: process.env.B_DEV ? "/out" : '/wmslabeler'
 };*/
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
   output: "export" as const,
-  basePath: '',
-  compiler: {
-    styledComponents: true,
-  }
+  basePath: isProduction ? '/wmslabeler' : ''
 };
 
 //const withCustomPWA = withPWA(nextPWAConfig);
