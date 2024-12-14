@@ -1,0 +1,72 @@
+.header {
+  margin: 1em 0;
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerAction {
+  cursor: pointer;
+  color: #333;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: flex-start; /* Alinha no topo */
+  height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+  padding: 0 32px;
+}
+
+.tagContainer {
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.tagCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.7cm;
+  height: 2.3cm;
+  margin: .1em;
+  border: solid 2px #e5e5e5;
+}
+
+.tagText {
+  font: 400 14px Roboto, sans-serif;
+  text-align: center;
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.tagBarcode {
+  font-family: 'ccode39';
+  font-size: 12px;
+  overflow: hidden;
+  text-align: center;
+}
+
+@media print {
+  @page {
+    size: 76.5mm 51mm; /* 102mm 68mm Tamanho personalizado */
+    margin: 0; /* Ajuste de margem, se necessário */
+    orientation: landscape; /* Define orientação paisagem */
+  }
+
+  .tagCard {
+    page-break-inside: avoid;
+    margin: 0 4em 5em 0;
+  }
+
+  .tagContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .header {
+    display: none;
+  }
+}
