@@ -1,7 +1,8 @@
 "use client"
 import { useState } from "react";
 import styles from './page.module.scss';
-import { greatVibes, roboto } from '../styles/fonts';
+import { roboto } from '../styles/fonts';
+import Barcode from 'react-barcode';
 
 function Tag({data = [], changeComponent}: any) {
   const itemsPerPage = 500; // Defina quantos itens deseja por página
@@ -43,7 +44,7 @@ function Tag({data = [], changeComponent}: any) {
           </svg>
         </a>
 
-        Total: {data.length} | Página: {currentPage} de {totalPages}
+        Total: {data.length} | Página: {currentPage} / {totalPages}
 
         <a onClick={() => window.print()} title="imprimir" className={styles.headerAction}>
           <svg
@@ -65,21 +66,17 @@ function Tag({data = [], changeComponent}: any) {
       </header>
 
       {/* Paginação */}
-      <header className={styles.header}>
+      <nav className={styles.header}>
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-        >
-          Anterior
-        </button>
+        >Anterior</button>
 
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-        >
-          Próxima
-        </button>
-      </header>
+        >Próxima</button>
+      </nav>
 
       <article className={styles.tagContainer}>
         {currentData.map((item: string, index: number) => (
@@ -88,9 +85,19 @@ function Tag({data = [], changeComponent}: any) {
               <p className={[styles.tagText, roboto.className].join(" ")}>
                 {item.slice(5)}
               </p>
-              <p className={[styles.tagBarcode, greatVibes.className].join(" ")}>
+              <div className={styles.tagBarcode}>
+                <Barcode 
+                  value={item} 
+                  displayValue={false} 
+                  margin={0} 
+                  height={30} 
+                  width={1} 
+                  format="CODE128" 
+                />
+              </div>
+              {/*<p className={[styles.tagBarcode, greatVibes.className].join(" ")}>
                 *{item}*
-              </p>
+              </p>*/}
             </div>
           </div>
         ))}

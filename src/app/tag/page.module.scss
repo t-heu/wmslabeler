@@ -55,20 +55,26 @@
   text-align: center;
   font-size: 34px;
   font-weight: bold;
-  color: #111;
+  color: #000;
 }
 
 .tagBarcode {
-  font-family: 'ccode39';
-  font-size: 11px;
+  position: relative;
+  /*font-size: 11px;
   overflow: hidden;
   text-align: center;
-  color: #111;
+  color: #000;*/
 }
 
 @media screen and (max-width: 768px) {
   .tagContainer {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 589px) {
+  .header {
+    width: 50%;
   }
 }
 
