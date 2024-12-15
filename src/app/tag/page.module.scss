@@ -44,10 +44,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 5.7cm;
-  height: 2.3cm;
+  width: 57.74mm;
+  height: 23.03mm;
   margin: .1em;
-  border: solid 2px #e5e5e5;
+  border: solid 0.6mm #e5e5e5;
 }
 
 .tagText {
@@ -61,8 +61,8 @@
 .tagBarcode {
   overflow: hidden;
   text-align: center;
-  /*font-size: 11px;
-  color: #000;*/
+  font-size: 11px;
+  color: #000;
 }
 
 @media screen and (max-width: 920px) {
