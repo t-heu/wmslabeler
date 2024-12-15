@@ -59,22 +59,21 @@
 }
 
 .tagBarcode {
-  position: relative;
-  /*font-size: 11px;
   overflow: hidden;
   text-align: center;
+  /*font-size: 11px;
   color: #000;*/
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 920px) {
   .tagContainer {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
-@media screen and (max-width: 589px) {
+@media screen and (max-width: 600px) {
   .header {
-    width: 50%;
+    width: 100%;
   }
 }
 
