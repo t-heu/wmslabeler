@@ -7,7 +7,9 @@ const nextPWAConfig = {
   dest: 'public',
   register: true,
   skipWaiting: true,
-  disable: !isProduction
+  //swSrc: 'public/service-worker.js',
+  disable: !isProduction,
+  buildExcludes: [/app-build-manifest.json$/]
 };
 
 const nextConfigFromPWA = {

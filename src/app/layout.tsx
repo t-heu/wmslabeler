@@ -26,11 +26,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="theme-color" content="#2c5396" />
-        {process.env.BUILD_IN_DEV ? null : (
-          <>
-            <link rel="manifest" href="/wmslabeler/manifest.json" />
-          </>
-        )}
+        <link rel="manifest" href="/wmslabeler/manifest.json" />
+        <script src="/main.js" defer></script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
