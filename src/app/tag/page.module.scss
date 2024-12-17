@@ -47,7 +47,7 @@
   width: 57.74mm;
   height: 23.03mm;
   margin: .1em;
-  border: solid 0.6mm #e5e5e5;
+  border: solid 1px #e5e5e5;
 }
 
 .tagText {
@@ -78,15 +78,24 @@
 }
 
 @media print {
+  .tagBarcode svg {
+    width: 3in; /* Largura em polegadas (1 inch = 300 pixels a 300 DPI) */
+  }
+
   @page {
-    size: 76.5mm 51mm; /* 102mm 68mm Tamanho personalizado */
+    size: 76.2mm 50.8mm; /* 102mm 68mm Tamanho personalizado */
     margin: 0; /* Ajuste de margem, se necessário */
     orientation: landscape; /* Define orientação paisagem */
   }
 
+  .pageHeader {
+    display: block;
+    padding: 0;
+  }
+
   .tagCard {
     page-break-inside: avoid;
-    margin: 0 4em 5em 0;
+    margin: 0 0 5em 2mm;
   }
 
   .tagContainer {
