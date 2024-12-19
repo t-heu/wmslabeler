@@ -50,7 +50,7 @@ const Home = ({data, changeComponent}: any) => {
       // Ler o arquivo como ArrayBuffer
       reader.readAsArrayBuffer(file);
     } else {
-      console.log("Nenhum arquivo selecionado");
+      alert("Nenhum arquivo selecionado");
     }
   };
 
@@ -62,6 +62,7 @@ const Home = ({data, changeComponent}: any) => {
       changeComponent('Tag');
     } catch (error) {
       console.error('Error:', error);
+      alert('Error: Algo inesperado aconteceu, tente mais tarde.');
     }
   };
 
@@ -86,16 +87,6 @@ const Home = ({data, changeComponent}: any) => {
             ENVIAR
           </button>
         </form>
-
-        <p className={styles.input__text}>
-          Baixe o modelo
-          <a
-            title="baixar modelo"
-            className={styles.link}
-            href="/wmslabeler/download.xlsx"
-            download="download"
-          > clicando aqui</a>
-        </p>
       </div>
     </main>
   );
