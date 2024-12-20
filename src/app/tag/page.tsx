@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
 import styles from './page.module.scss';
-import { roboto } from '../styles/fonts';
+import { roboto, code128 } from '../styles/fonts';
 import Barcode from 'react-barcode';
 
 function Tag({data = [], changeComponent}: any) {
@@ -85,7 +85,7 @@ function Tag({data = [], changeComponent}: any) {
               <p className={[styles.tagText, roboto.className].join(" ")}>
                 {item.slice(5)}
               </p>
-              {<div className={styles.tagBarcode}>
+              {/*<div className={styles.tagBarcode}>
                 <Barcode 
                   value={item} 
                   displayValue={false} 
@@ -95,10 +95,10 @@ function Tag({data = [], changeComponent}: any) {
                   format="CODE128" 
                   lineColor="#111"
                 />
-              </div>}
-              {/*<p className={[styles.tagBarcode, greatVibes.className].join(" ")}>
+              </div>*/}
+              {<p className={[styles.tagBarcode, code128.className].join(" ")}>
                 *{item}*
-              </p>*/}
+              </p>}
             </div>
           </div>
         ))}
