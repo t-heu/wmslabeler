@@ -10,6 +10,6 @@ const roboto = Roboto({
 })
 // define a custom local font where ConnectCode39.ttf is stored in the styles folder
 const greatVibes = localFont({ src: './fonts/ConnectCode39.ttf' })
- const code128 = localFont({ src: './fonts/CODE128.ttf' })
+ const code128 = localFont({ src: './fonts/CODE128.TTF' })
  
 export { roboto, greatVibes, code128 }
