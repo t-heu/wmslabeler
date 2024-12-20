@@ -97,7 +97,7 @@ function Tag({data = [], changeComponent}: any) {
                 />
               </div>*/}
               {<p className={[styles.tagBarcode, code128.className].join(" ")}>
-                *{item}*
+                {item}
               </p>}
             </div>
           </div>
