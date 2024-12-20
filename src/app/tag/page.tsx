@@ -2,7 +2,7 @@
 import { useState } from "react";
 import styles from './page.module.scss';
 import { roboto, code128 } from '../styles/fonts';
-import Barcode from 'react-barcode';
+// import Barcode from 'react-barcode';
 
 function Tag({data = [], changeComponent}: any) {
   const itemsPerPage = 500; // Defina quantos itens deseja por página
