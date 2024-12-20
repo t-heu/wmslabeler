@@ -24,6 +24,38 @@ function Tag({data = [], changeComponent}: any) {
     }
   };
 
+  function generateCode128B(input: any) {
+    input = String(input);
+    // Tabela de valores do Subconjunto B
+    const code128BTable = [...Array(96)].map((_, i) => i + 32); // ASCII 32 a 127 (96 caracteres)
+    const startCodeB = 104; // Valor inicial do Subconjunto B
+    
+    // Converte caracteres para valores correspondentes
+    const charValues = input.split("").map((char: any) => {
+        const charCode = char.charCodeAt(0);
+        const value = code128BTable.indexOf(charCode);
+        if (value === -1) alert(`Caractere inválido para Code 128-B: ${char}`);
+        return value;
+    });
+
+    // Calcula o checksum
+    let checksum = startCodeB; // Valor inicial
+    charValues.forEach((value: any, index: any) => {
+        checksum += value * (index + 1);
+    });
+    checksum %= 103;
+
+    // Converte o checksum para caractere correspondente
+    const checksumChar = String.fromCharCode(code128BTable[checksum]);
+
+    // Adiciona caracteres de início, texto, checksum e término
+    const startChar = String.fromCharCode(204); // Ì (Start Code B)
+    const stopChar = String.fromCharCode(206);  // Î (Stop Code)
+    const fullCode = startChar + input + checksumChar + stopChar;
+    
+    return fullCode;
+  }
+
   return (
     <main className={styles.pageHeader}>
       <header className={styles.header}>
@@ -97,7 +129,7 @@ function Tag({data = [], changeComponent}: any) {
                 />
               </div>*/}
               {<p className={[styles.tagBarcode, code128.className].join(" ")}>
-                {item}
+              {generateCode128B(item)}
               </p>}
             </div>
           </div>
