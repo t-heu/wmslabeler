@@ -54,7 +54,7 @@ function Tag({data = [], changeComponent}: any) {
     const check = checkSum128(text, startCode.charCodeAt(0) - 100);
   
     text = text.replace(/ /g, String.fromCharCode(32));
-    console.log(text)
+    
     return startCode + text + check + stop;
   }
 
