@@ -113,25 +113,14 @@ function Tag({data = [], changeComponent}: any) {
       </nav>
 
       <article className={styles.tagContainer}>
-        {currentData.map((item: string, index: number) => (
+        {currentData.map((text: string, index: number) => (
           <div className={styles.tagCard} key={index}>
             <div>
               <p className={[styles.tagText, roboto.className].join(" ")}>
-                {item.slice(5)}
+                {text.slice(5)}
               </p>
-              {/*<div className={styles.tagBarcode}>
-                <Barcode 
-                  value={item} 
-                  displayValue={false} 
-                  margin={0} 
-                  height={30} 
-                  width={1} 
-                  format="CODE128" 
-                  lineColor="#111"
-                />
-              </div>*/}
               {<p className={[styles.tagBarcode, code128.className].join(" ")}>
-              {encodeToCode128(item)}
+              {encodeToCode128(text)}
               </p>}
             </div>
           </div>

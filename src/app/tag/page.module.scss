@@ -10,18 +10,26 @@
 
 .headerAction {
   cursor: pointer;
-  color: #333;
+  color: #1a1a1a;
+  
+  &:hover {
+    color: #555;
+  }
 }
 
 .header button {
   color: #eee;
-  padding: 1em;
-  background-color: #333;
+  padding: .8em 1em;
+  background-color: #1a1a1a;
   cursor: pointer;
   border-radius: 4px;
 
   &:hover {
-    background-color: #111;
+    background-color: #333;
+  }
+  
+  &:disabled {
+    background-color: #555
   }
 }
 
@@ -61,7 +69,7 @@
 .tagBarcode {
   overflow: hidden;
   text-align: center;
-  font-size: 30px;
+  font-size: 33px;
   color: #000;
 }
 
