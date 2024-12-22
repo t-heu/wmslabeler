@@ -1,20 +1,19 @@
 "use client"
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import styles from './page.module.scss';
 import { roboto, code128 } from '../styles/fonts';
 
 function Tag({data = [], changeComponent}: any) {
-  const itemsPerPage = 500; // Defina quantos itens deseja por página
+  const ITEMS_PER_PAGE = 500; // Defina quantos itens deseja por página
   const [currentPage, setCurrentPage] = useState(1);
-
-  // Total de páginas
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-
+  const totalPages = useMemo(() => Math.ceil(data.length / ITEMS_PER_PAGE), [data.length]);
+  
   // Dados da página atual
-  const currentData = data.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const currentData = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    return data.slice(start, end);
+  }, [data, currentPage]);
 
   // Função para mudar de página
   const handlePageChange = (page: number) => {
@@ -23,15 +22,14 @@ function Tag({data = [], changeComponent}: any) {
     }
   };
 
-  function toSetC(text: any) {
-    return text.match(/\d{2}/g).map((ascii: any) => {
+  // Função utilitária para gerar texto no formato 'C'
+  const toSetC = (text: string): string =>
+    text.match(/\d{2}/g)?.map((ascii) => {
       const codeC = Number(ascii);
-      const charCode = codeC > 94 ? codeC + 100 : codeC + 32;
-      return String.fromCharCode(charCode)
-    }).join('');
-  }
+      return String.fromCharCode(codeC > 94 ? codeC + 100 : codeC + 32);
+    }).join('') || "";
   
-  function checkSum128(data: any, startCode: any) {
+  function checkSum128(data: string, startCode: number) {
     let sum = startCode;
     for (let i = 0; i < data.length; i++) {
       const code = data.charCodeAt(i);
@@ -44,18 +42,15 @@ function Tag({data = [], changeComponent}: any) {
     return String.fromCharCode(checksum);
   }
   
-  function encodeToCode128(text: any, codeABC = "B") {
+  const encodeToCode128 = (text: string, codeABC = "B"): string => {
     const startCode = String.fromCharCode(codeABC.toUpperCase().charCodeAt(0) + 138);
     const stop = String.fromCharCode(206);
   
-    text = codeABC == 'C' && toSetC(text) || text;
+    const processedText = codeABC === 'C' ? toSetC(text) : text.replace(/ /g, String.fromCharCode(32));
+    const check = checkSum128(processedText, startCode.charCodeAt(0) - 100);
   
-    const check = checkSum128(text, startCode.charCodeAt(0) - 100);
-  
-    text = text.replace(/ /g, String.fromCharCode(32));
-    
-    return startCode + text + check + stop;
-  }
+    return startCode + processedText + check + stop;
+  };
 
   return (
     <main className={styles.pageHeader}>
