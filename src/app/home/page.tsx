@@ -14,13 +14,18 @@ const Home = ({data, changeComponent}: any) => {
     const wb = read(file, { type: 'buffer', raw: true });
     const wsname = wb.SheetNames[0];
     const ws = wb.Sheets[wsname];
-    const data = utils.sheet_to_json(ws);
+    const data: any[][] = utils.sheet_to_json(ws, { header: 1 });
     
-    if (data.length === 0) alert('Arquivo não pode está vazio!');
+    if (data.length === 0) {
+      alert('Arquivo não pode estar vazio!');
+      return [];
+    }
   
     const uniqueData = Array.from(
       new Set(
-        data.map((tag: any) => (tag['wms'] || tag['WMS'] || tag['Wms.'] || '').trim())
+        data
+          .filter((row) => row && row[0] !== undefined && row[0] !== null && row[0].toString().trim() !== '') // Pula linhas vazias
+          .map((row) => (row[0] || '').toString().trim())
       )
     );
     
@@ -111,7 +116,7 @@ const Home = ({data, changeComponent}: any) => {
       </div>
       <footer>
         <p>
-          version: 1.0
+          version: 1.1
         </p>
       </footer>
     </main>
