@@ -2,35 +2,13 @@
 import React, { useState } from 'react';
 
 import styles from './page.module.scss';
-import { read, utils } from 'xlsx';
+import readFile from '../utils/readFile';
 
 const Home = ({data, changeComponent}: any) => {
   const [name, setName] = useState("Arraste ou clique para enviar.");
   const [fileData, setFileData] = useState<any>(null)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const VALID_EXTENSIONS = ['xlsx', 'xls', 'ods', 'csv'];
-
-  function read_file(file: any) {
-    const wb = read(file, { type: 'buffer', raw: true });
-    const wsname = wb.SheetNames[0];
-    const ws = wb.Sheets[wsname];
-    const data: any[][] = utils.sheet_to_json(ws, { header: 1 });
-    
-    if (data.length === 0) {
-      alert('Arquivo não pode estar vazio!');
-      return [];
-    }
-  
-    const uniqueData = Array.from(
-      new Set(
-        data
-          .filter((row) => row && row[0] !== undefined && row[0] !== null && row[0].toString().trim() !== '') // Pula linhas vazias
-          .map((row) => (row[0] || '').toString().trim())
-      )
-    );
-    
-    return uniqueData
-  }
 
   const validateFileExtension = (fileName: string): boolean => {
     const ext = fileName.split('.').pop()?.toLowerCase();
@@ -69,7 +47,7 @@ const Home = ({data, changeComponent}: any) => {
       reader.onload = (e) => {
         const buffer = e.target?.result;
         if (buffer) {
-          data(read_file(buffer as ArrayBuffer));
+          data(readFile(buffer as ArrayBuffer));
           changeComponent('Tag');
         }
       };
@@ -116,7 +94,7 @@ const Home = ({data, changeComponent}: any) => {
       </div>
       <footer>
         <p>
-          version: 1.1
+          version: 1.2
         </p>
       </footer>
     </main>
