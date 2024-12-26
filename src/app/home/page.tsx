@@ -70,6 +70,14 @@ const Home = ({data, changeComponent}: any) => {
         <h2>GERAR ETIQUETAS WMS</h2>
 
         <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <button
+            title="Enviar"
+            type="submit"
+            className={styles.input__button}
+            disabled={!fileData || isSubmitting}
+          >
+            {isSubmitting ? "Processando..." : "ENVIAR"}
+          </button>
           <div className={styles.input__form}>
             <input
               name="file"
@@ -82,14 +90,7 @@ const Home = ({data, changeComponent}: any) => {
               {name}
             </span>
           </div>
-          <button
-            title="Enviar"
-            type="submit"
-            className={styles.input__button}
-            disabled={!fileData || isSubmitting}
-          >
-            {isSubmitting ? "Processando..." : "ENVIAR"}
-          </button>
+          
         </form>
       </div>
       <footer>

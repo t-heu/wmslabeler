@@ -27,7 +27,7 @@
   &>form {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
 
@@ -36,6 +36,11 @@
   align-items: center;
   position: relative;
   width: 100%;
+  border-radius: 4px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 1px dashed #fdd63a;
+  border-bottom: none;
 
   &>[type='file'] {
     position: absolute;
@@ -76,24 +81,21 @@
   cursor: pointer;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  background-color: #fff;
 
   .input__form>& {
     text-align: center;
     overflow-x: scroll;
     padding: 16px;
     cursor: pointer;
-    border-radius: 4px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border: 1px dashed #fdd63a;
-    border-bottom: none;
+    
 
     &::-webkit-scrollbar {
       display: none;
     }
   }
+}
 
-  .input__button:hover~.input__form>& {
-    border-color: #2c5396;
-  }
+.input__button:hover ~ .input__form {
+  border-color: #2c5396; /* Altera a borda do formulário ao passar o mouse no botão */
 }

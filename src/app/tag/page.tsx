@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 
 import {encodeToCode128} from '../utils/code128'
 import styles from './page.module.scss';
-import { roboto, code128 } from '../styles/fonts';
+import { code128 } from '../styles/fonts';
 
 function Tag({data = [], changeComponent}: any) {
   const ITEMS_PER_PAGE = 500; // Defina quantos itens deseja por página
@@ -81,14 +81,12 @@ function Tag({data = [], changeComponent}: any) {
       <article className={styles.tagContainer}>
         {currentData.map((text: string, index: number) => (
           <div className={styles.tagCard} key={index}>
-            <div>
-              <p className={[styles.tagText, roboto.className].join(" ")}>
-                {text.slice(5)}
-              </p>
-              {<p className={[styles.tagBarcode, code128.className].join(" ")}>
+            <p className={[styles.tagText].join(" ")}>
+              {text.slice(5)}
+            </p>
+            <p className={[styles.tagBarcode, code128.className].join(" ")}>
               {encodeToCode128(text)}
-              </p>}
-            </div>
+            </p>
           </div>
         ))}
       </article>

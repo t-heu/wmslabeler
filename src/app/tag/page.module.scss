@@ -52,25 +52,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 57.9mm;
+  flex-direction: column;
+  width: 57.99mm;
   height: 23.3mm;
   margin: .1em;
   border: solid 1px #e5e5e5;
 }
 
 .tagText {
-  font: 400 14px Roboto, sans-serif;
+  /*font: 400 Roboto, sans-serif;*/
+  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
-  font-size: 32px;
+  font-size: 25pt;
   font-weight: bold;
   color: #000;
 }
 
 .tagBarcode {
-  /*padding: 0 1em;*/
   text-align: center;
-  font-size: 33px;
+  font-size: 25pt;
   color: #000;
+  border-top: solid 1px #e5e5e5;
+  padding-top: 2px;
+  width: 100%;
 }
 
 @media screen and (max-width: 920px) {
@@ -86,10 +90,6 @@
 }
 
 @media print {
-  .tagBarcode svg {
-    width: 3in; /* Largura em polegadas (1 inch = 300 pixels a 300 DPI) */
-  }
-
   @page {
     size: 76.2mm 50.8mm; /* 102mm 68mm Tamanho personalizado */
     margin: 0; /* Ajuste de margem, se necessário */
