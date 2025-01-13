@@ -82,7 +82,7 @@ function Tag({data = [], changeComponent}: any) {
         {currentData.map((text: string, index: number) => (
           <div className={styles.tagCard} key={index}>
             <p className={[styles.tagText].join(" ")}>
-              {text.slice(5)}
+              {text.length > 15 ? text.slice(5) : text.slice(4)}
             </p>
             <p className={[styles.tagBarcode, code128.className].join(" ")}>
               {encodeToCode128(text)}
