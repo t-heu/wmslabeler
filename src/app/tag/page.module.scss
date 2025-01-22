@@ -6,6 +6,8 @@
   align-items: center;
   color: #111;
   font-weight: bold;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
 }
 
 .headerAction {
@@ -56,36 +58,43 @@
   width: 57.99mm;
   height: 23.3mm;
   margin: .1em;
-  border: solid 1px #e5e5e5;
+  border: solid 1px #dadcdd;
 }
 
 .tagText {
-  /*font: 400 Roboto, sans-serif;*/
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   text-align: center;
-  font-size: 24pt;
+  font-size: 25pt;
   font-weight: bold;
-  color: #222;
+  color: #111;
 }
 
 .tagBarcode {
   text-align: center;
-  font-size: 28pt;
-  color: #222;
-  border-top: solid 1px #e5e5e5;
+  font-size: 27pt;
+  color: #111;
+  border-top: solid 1px #dadcdd;
   padding-top: 2px;
   width: 100%;
 }
 
 @media screen and (max-width: 920px) {
+  .header {
+    width: 80%;
+  }
+
   .tagContainer {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3,1fr);
   }
 }
 
 @media screen and (max-width: 600px) {
   .header {
     width: 100%;
+  }
+
+  .tagContainer {
+    grid-template-columns: repeat(1,1fr);
   }
 }
 
