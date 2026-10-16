@@ -2,6 +2,7 @@
 import { useState, useMemo } from "react";
 
 import {encodeToCode128} from '../utils/code128'
+import formatText from '../utils/formatText';
 import styles from './page.module.scss';
 import { code128 } from '../styles/fonts';
 
@@ -22,11 +23,6 @@ function Tag({data = [], changeComponent}: any) {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
-  };
-
-  const formatText = (text: string) => {
-    const match = text.match(/(?:\d+[A-Z]?\s?[A-Z]?\s)(.*)/); // Captura tudo após o prefixo
-    if (match) return match[1]
   };
 
   return (
